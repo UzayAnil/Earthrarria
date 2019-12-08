@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Earthrarria</title>
+		<link rel="stylesheet" href="assets/styles/styles.css">
+		<link id="favicon" type="image/x-icon" rel="icon" href="">
+	</head>
+	<body>
+		<canvas id="board"></canvas>
+		<canvas id="faviconBoard"></canvas>
+		<div class="holder">
+			<span>Inventory</span>
+			<ul id="inventory"></ul>
+		</div class="holder">
+		<div class="holder">
+			<span>Crafting Table</span>
+			<ul id="craftingTable">
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+			<span>
+				Press <b>C</b> to craft
+			</span>
+		</div>
+		<span id="placeDig">Digging Activated</span>
+		<script src="assets/js/functions.js"></script>
+		<script src="assets/js/settings.js"></script>
+		<script src="assets/js/elements.js"></script>
+		<script src="assets/js/inventory.js"></script>
+		<script src="assets/js/crafting.js"></script>
+		<script src="assets/js/player.js"></script>
+		<script src="assets/js/physics.js"></script>
+		<script src="assets/js/generate.js"></script>
+		<script src="assets/js/draw.js"></script>
+		<script src="assets/js/init.js"></script>
+		<script>
+			var linkFav = document.getElementById("favicon"),
+				favIco = document.getElementById("faviconBoard"),
+				ctx2 = favIco.getContext("2d");
+
+			setInterval(function(){
+				favIco.width = 16;
+				favIco.height = 16;
+
+				ctx2.fillStyle = player.colour;
+				ctx2.fillRect(0, 0, 16, 16);
+				ctx2.fillStyle = "#000";
+				if(player.right){
+					ctx2.fillRect(
+						16 - 16 / 5, 
+						16 / 2 - 16 / 5 + (16 / 5) / 2, 
+						16 / 5, 
+						16 / 5
+					);
+				}
+				if(player.left){
+					ctx2.fillRect(
+						0, 
+						16 / 2 - 16 / 5 + (16 / 5) / 2, 
+						16 / 5, 
+						16 / 5
+					);
+				}
+				if(player.up){
+					ctx2.fillRect(
+						16 / 2 - (16 / 5) / 2, 
+						0,
+						16 / 5, 
+						16 / 5
+					);
+				}
+				if(player.down){
+					ctx2.fillRect(
+						16 / 2 - (16 / 5) / 2, 
+						16 - 16 / 5,
+						16 / 5, 
+						16 / 5
+					);
+				}
+				linkFav.href = favIco.toDataURL();
+			}, 1000/30)
+		</script>
+	</body>
+</html>
